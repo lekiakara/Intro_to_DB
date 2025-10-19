@@ -26,3 +26,25 @@ finally:
         cursor.close()
         mydb.close()
         print("MySQL connection closed.")
+
+cursor = mydb.cursor()
+cursor = cursor.execute("""
+                        CREATE TABLE book (
+	                    book_id INT PRIMARY KEY,
+                        title VARCHAR(130),
+                        author_id INT,
+                        price DOUBLE,
+                        publication_date date,
+                        foreign key (author_id) references authors(author_id)
+                        )
+                    """)
+
+
+
+cursor = mydb.cursor()
+cursor = cursor.execute("""
+                        CREATE TABLE authors (
+	                    author_id INT PRIMARY KEY,
+                        author_name VARCHAR(215)
+                        )
+                        """);
