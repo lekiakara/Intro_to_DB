@@ -17,7 +17,7 @@ try:
 
         print("Database 'alx_book_store' created successfully (or already exists).")
 
-except Error as e:
+except mysql.connect.Error as e:
     print("Error while connecting to MySQL:", e)
 
 finally:
