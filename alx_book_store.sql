@@ -1,11 +1,28 @@
-CREATE DATABASE alx_book_store;
-USE alx_book_store;
+import mysql.connector
+from mysql.connector import Error
 
-CREATE TABLE alx_book_store (
-	book_id INT PRIMARY KEY,
-	title VARCHAR(130),
-	FOREIGN KEY (author_id) REFERENCES authors(author_id),
-	price DOUBLE,
-	publication_date DATE
-    );
-    
+try:
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="root",          
+        password="root"  
+    )
+
+    if mydb.is_connected():
+        print("Connected to MySQL Server")
+
+        cursor = mydb.cursor()
+
+        cursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
+
+        print("Database 'alx_book_store' created successfully (or already exists).")
+
+except Error as e:
+    print("Error while connecting to MySQL:", e)
+
+finally:
+    # Close connection
+    if 'mydb' in locals() and mydb.is_connected():
+        cursor.close()
+        mydb.close()
+        print("MySQL connection closed.")
