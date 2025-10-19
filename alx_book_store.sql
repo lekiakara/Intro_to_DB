@@ -27,6 +27,16 @@ finally:
         mydb.close()
         print("MySQL connection closed.")
 
+
+cursor = mydb.cursor()
+cursor = cursor.execute("""
+                        CREATE TABLE authors (
+	                    author_id INT PRIMARY KEY,
+                        author_name VARCHAR(215)
+                        )
+                        """);
+
+
 cursor = mydb.cursor()
 cursor = cursor.execute("""
                         CREATE TABLE book (
@@ -39,12 +49,3 @@ cursor = cursor.execute("""
                         )
                     """)
 
-
-
-cursor = mydb.cursor()
-cursor = cursor.execute("""
-                        CREATE TABLE authors (
-	                    author_id INT PRIMARY KEY,
-                        author_name VARCHAR(215)
-                        )
-                        """);
